@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Chore_ChartApp: App {
+    @StateObject private var model = ChoreChartModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(model)
         }
     }
 }
