@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9689CA7A2CB338FB00E62147 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9689CA792CB338FB00E62147 /* FirebaseCore */; };
 		9689CA7C2CB3395300E62147 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9689CA7B2CB3395300E62147 /* FirebaseFirestore */; };
+		96B614C32CB4295700AC5451 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96B614C22CB4294E00AC5451 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +33,33 @@
 		9689C9CB2CB3181000E62147 /* Chore Chart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chore Chart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9689C9DB2CB3181100E62147 /* Chore ChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chore ChartTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9689C9E52CB3181100E62147 /* Chore ChartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chore ChartUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96B614C22CB4294E00AC5451 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		96B614BE2CB4151600AC5451 /* Exceptions for "Chore Chart" folder in "Chore ChartTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 9689C9DA2CB3181100E62147 /* Chore ChartTests */;
+		};
+		96B614BF2CB4151600AC5451 /* Exceptions for "Chore Chart" folder in "Chore ChartUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 9689C9E42CB3181100E62147 /* Chore ChartUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9689C9CD2CB3181000E62147 /* Chore Chart */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				96B614BE2CB4151600AC5451 /* Exceptions for "Chore Chart" folder in "Chore ChartTests" target */,
+				96B614BF2CB4151600AC5451 /* Exceptions for "Chore Chart" folder in "Chore ChartUITests" target */,
+			);
 			path = "Chore Chart";
 			sourceTree = "<group>";
 		};
@@ -82,6 +105,7 @@
 		9689C9C22CB3181000E62147 = {
 			isa = PBXGroup;
 			children = (
+				96B614C22CB4294E00AC5451 /* README.md */,
 				9689C9CD2CB3181000E62147 /* Chore Chart */,
 				9689C9DE2CB3181100E62147 /* Chore ChartTests */,
 				9689C9E82CB3181100E62147 /* Chore ChartUITests */,
@@ -232,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B614C32CB4295700AC5451 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBdQ9M6rST9zPM_PPIkrqSRmB1H-a64kPc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>791600802499</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>justApps.Chore-Chart</string>
+	<key>PROJECT_ID</key>
+	<string>chore-chart-683d7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chore-chart-683d7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:791600802499:ios:61ac8fd31f179390659076</string>
+</dict>
+</plist>
