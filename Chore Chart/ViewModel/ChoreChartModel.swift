@@ -10,31 +10,45 @@ import FirebaseFirestore
 class ChoreChartModel: ObservableObject {
     @Published var children: [Child] = []
     @Published var events: [Event] = []
+    @Published var childEvents: [ChildEvent] = []
     let db = Firestore.firestore()
     
+    init () {
+        Task{
+            await readEvents()
+            await readChildren()
+        }
+    }
+    
     //MARK: Add data to database and array
-    func addChild (child: Child) {
+    func addChild (child: Child) async {
         do {
-            let newChild = try db.collection("Child").addDocument(from: child)
-            children.append(child)
+            try db.collection("Child").addDocument(from: child)
+            await readChildren()
         } catch {
             print("Error adding document: \(error)")
         }
     }
     
-    func addEvent (event: Event) {
+    func addEvent (event: Event) async {
         do {
-            let ref = try db.collection("Event").addDocument(from: event)
-            events.append(event)
+            try db.collection("Event").addDocument(from: event)
+            await readEvents()
         } catch {
             print("Error adding document: \(error)")
         }
+    }
+    
+    //Add an event to the child events array
+    func addChildEvent(child: Child, event: Event) {
+        child.events.append(ChildEvent(eventType: event.eventType, eventName: event.eventName, eventPoints: event.eventPoints, eventDate: Date.now))
+        modifyChild(child: child)
     }
     
     //MARK: Delete data from database
     func deleteChild (child: Child) async {
         do {
-            try await db.collection("Child").document("child").delete()
+            try await db.collection("Child").document(child.id!).delete()
             
             //Reread Child collection
             await readChildren()
@@ -46,9 +60,9 @@ class ChoreChartModel: ObservableObject {
     
     func deleteEvent (event: Event) async {
         do {
-            try await db.collection("Event").document("event").delete()
+            try await db.collection("Event").document(event.id!).delete()
             
-            //Reread Child collection
+            //Reread Event collection
             await readEvents()
             
         } catch {
@@ -81,17 +95,12 @@ class ChoreChartModel: ObservableObject {
         }
     }
     
-    //Add an event to the child events array
-    func addChildEvent(child: Child, event: Event) {
-        child.events.append(event)
-        modifyChild(child: child)
-    }
-    
-    func deleteChildEvent(child: Child, event: Event) {
+    //Delete an event from the child events array
+    func deleteChildEvent(child: Child, childEvent: ChildEvent) {
         //Get index of event
         var index = 0
-        for event1 in child.events {
-            if event1 === event {
+        for event in child.events {
+            if event === childEvent {
                 break
             } else {
                 index += 1

@@ -6,16 +6,15 @@
 //
 import FirebaseFirestore
 
-class Child: Codable {
+class Child: Codable, Identifiable {
     @DocumentID var id: String?
     var name: String?
     var points: Int?
-    var events: [Event?]
+    var events: [ChildEvent] = []
     
-    init(id: String? = nil, name: String? = nil, points: Int? = nil, events: [Event?]) {
+    init(id: String? = nil, name: String? = nil, points: Int? = nil) {
         self.id = id
         self.name = name
         self.points = points
-        self.events = events
     }
 }
