@@ -14,32 +14,43 @@ struct ChildView: View {
     
     var body: some View {
         VStack {
+            //Show name and points
             HStack {
                 Text(child.name ?? "")
                 Spacer()
-                Text("Points:" + String(child.points ?? 0))
+                Text("Points: " + String(child.points ?? 0))
             }
+            .padding()
             
             Divider()
             
-            List(child.events) {event in
+            //Show completed events
+            List (child.events, id: \.id.self) {event in
                 HStack {
                     Text(dateFormatter.string(from: event.eventDate ?? Date.now))
                     Spacer()
-                    Text(event.eventName!)
+                    Text(event.eventName ?? "")
                     Spacer()
                     Text(String(event.eventPoints ?? 0))
                 }
             }
             
-            Button {
-                Picker("Event", selection: $chosenEvent) {
-                    ForEach(model.events, id: \.id) { event in
-                        Text(event.eventName ?? "").tag(event.eventName ?? "")
+            //Add completed events to child
+            Menu {
+                ForEach (model.events) {event in
+                    Button {
+                        Task {
+                            await model.addChildEvent(child: child, event: event)
+                            model.modifyChild(child: child)
+                            child.calculatePoints(events: child.events, child: child)
+                            model.modifyChild(child: child)
+                        }
+                    } label: {
+                        Text(event.eventName ?? "")
                     }
                 }
             } label: {
-                Image(systemName: "plus")
+                Label("Add Child Event", systemImage: "plus")
             }
         }
     }

@@ -7,10 +7,10 @@
 import Foundation
 import FirebaseFirestore
 
+@MainActor
 class ChoreChartModel: ObservableObject {
     @Published var children: [Child] = []
     @Published var events: [Event] = []
-    @Published var childEvents: [ChildEvent] = []
     let db = Firestore.firestore()
     
     init () {
@@ -40,9 +40,18 @@ class ChoreChartModel: ObservableObject {
     }
     
     //Add an event to the child events array
-    func addChildEvent(child: Child, event: Event) {
-        child.events.append(ChildEvent(eventType: event.eventType, eventName: event.eventName, eventPoints: event.eventPoints, eventDate: Date.now))
+    func addChildEvent(child: Child, event: Event) async {
+        
+        //Create a childEvent from the event
+        let childEvent = ChildEvent(id: UUID(), eventType: event.eventType, eventName: event.eventName, eventPoints: event.eventPoints, eventDate: Date.now)
+        
+        
+        //apppend child event to child's events array
+        child.events.append(childEvent)
+        
+        //Rerender children
         modifyChild(child: child)
+        await readChildren()
     }
     
     //MARK: Delete data from database
@@ -119,7 +128,9 @@ class ChoreChartModel: ObservableObject {
         children = []
         
         do {
+            //read the data
             let snapshot = try await db.collection("Child").getDocuments()
+            
             for document in snapshot.documents {
                 
                 //Set each document to a child object
@@ -139,7 +150,9 @@ class ChoreChartModel: ObservableObject {
         events = []
         
         do {
+            //Get the data
             let snapshot = try await db.collection("Event").getDocuments()
+            
             for document in snapshot.documents {
                 
                 //Set each document to a child object

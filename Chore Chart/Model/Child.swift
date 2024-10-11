@@ -15,6 +15,21 @@ class Child: Codable, Identifiable {
     init(id: String? = nil, name: String? = nil, points: Int? = nil) {
         self.id = id
         self.name = name
-        self.points = points
+        if self.events.count > 0 {
+            calculatePoints(events: self.events, child: self)
+        } else {
+            self.points = 0
+        }
+    }
+    
+    func calculatePoints(events: [ChildEvent], child: Child) {
+        var points = 0
+        
+        for event in events {
+            points += event.eventPoints!
+        }
+        
+        child.points = points
+        
     }
 }

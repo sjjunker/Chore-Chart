@@ -4,6 +4,7 @@
 //
 //  Created by Sandi Junker on 10/6/24.
 //
+//TODO: Figure out why children events aren't reading
 
 import SwiftUI
 import Foundation
@@ -42,6 +43,9 @@ struct HomeView: View {
                     .padding()
                 }
                 
+                Spacer()
+                Divider()
+                
                 //Add child/event
                 HStack {
                     VStack {
@@ -52,13 +56,15 @@ struct HomeView: View {
                             if (childName != "" && childPoints != "") {
                                 Task {
                                     await model.addChild(child: Child(name: childName, points: Int(childPoints)))
+                                    
+                                    childName = ""
+                                    childPoints = ""
                                 }
                             }
                         } label: {
                             Text("Add Child")
                         }
                     }
-                    
                     
                     VStack {
                         Picker(selection: $eventType) {
@@ -75,7 +81,11 @@ struct HomeView: View {
                         Button {
                             if (eventType != "" && eventName != "" && eventPoints != "") {
                                 Task {
-                                    await model.addEvent(event: Event( eventType: eventType, eventName: eventName, eventPoints: Int(eventPoints)))
+                                    await model.addEvent(event: Event(eventType: eventType, eventName: eventName, eventPoints: Int(eventPoints)))
+                                    
+                                    eventName = ""
+                                    eventPoints = ""
+                                    eventType = ""
                                 }
                             }
                         } label: {

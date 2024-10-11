@@ -7,17 +7,18 @@
 import Foundation
 import FirebaseFirestore
 
-class ChildEvent: Event {
+class ChildEvent: Codable, Identifiable {
+    var id: UUID?
+    var eventType: String?
+    var eventName: String?
+    var eventPoints: Int?
     var eventDate: Date?
     
-    init(id: String? = nil, eventType: String? = nil, eventName: String? = nil, eventPoints: Int? = nil, eventDate: Date? = nil) {
-        
+    init(id: UUID? = nil, eventType:String?, eventName: String? = nil, eventPoints: Int? = nil, eventDate: Date? = nil) {
+        self.id = id
+        self.eventType = eventType
+        self.eventName = eventName
+        self.eventPoints = eventPoints
         self.eventDate = eventDate
-        super.init(id: id, eventType: eventType, eventName: eventName, eventPoints: eventPoints)
-        
-    }
-    
-    required init(from decoder: any Decoder) throws {
-        fatalError("init(from:) has not been implemented")
     }
 }

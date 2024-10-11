@@ -14,7 +14,7 @@ class Event: Codable, Identifiable {
     var eventName: String?
     var eventPoints: Int?
     
-    init(id: String? = nil, eventType: String? = nil, eventName: String? = nil, eventPoints: Int? = nil) {
+    init(id: String? = nil, eventType:String?, eventName: String? = nil, eventPoints: Int? = nil) {
         self.id = id
         self.eventType = eventType
         self.eventName = eventName
