@@ -103,24 +103,7 @@ struct ChildView: View {
                             await model.modifyChild(child: child)
                         }
                     } label: {
-                        HStack{
-                            //TODO: Edit event
-                            
-                            Text(event.eventName ?? "")
-                            
-                            //TODO: Delete event
-                            Button {
-                                Task {
-                                    await model.deleteEvent(event: event)
-                                }
-                            } label: {
-                                Image(systemName: "x.circle")
-                                    .foregroundStyle(Color.red)
-                                    .bold()
-                            }
-                            .padding()
-                        }
-                        
+                        Text(event.eventName ?? "")
                     }
                 }
             } label: {

@@ -11,7 +11,7 @@ struct AddEventView: View {
     @EnvironmentObject var model: ChoreChartModel
     @State var eventName = ""
     @State var eventPoints = ""
-    @State var eventType = ""
+    @State var eventType = "chore"
     
     var body: some View {
 
@@ -22,8 +22,9 @@ struct AddEventView: View {
                 Text("Reward").tag("reward")
                 Text("Chore").tag("chore")
             }
+            .padding(.all, 2)
             .background(Color.white)
-            .clipShape(Circle())
+            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 3, height: 3)))
             
             //Event name
             TextField("Event Name:", text: $eventName)
