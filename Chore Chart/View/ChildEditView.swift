@@ -11,7 +11,7 @@ import Foundation
 struct ChildEditView: View {
     @EnvironmentObject var model: ChoreChartModel
     @State var child: Child
-    @State var childName = ""
+    @State private var childName = ""
     
     var body: some View {
         VStack {
@@ -30,7 +30,6 @@ struct ChildEditView: View {
                     child.name = childName
                     Task {
                         await model.modifyChild(child: child)
-                        await model.readChildren()
                     }
                     model.popoverShowing = false
                 }

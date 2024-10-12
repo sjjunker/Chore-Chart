@@ -9,8 +9,7 @@ import SwiftUI
 struct ChildView: View {
     @EnvironmentObject var model: ChoreChartModel
     @State var child: Child
-    let dateFormatter = DateFormatter()
-    @State var chosenEvent: Int = 0
+    private let dateFormatter = DateFormatter()
     
     var body: some View {
         
@@ -52,7 +51,7 @@ struct ChildView: View {
                         .font(.caption)
                     
                     HStack {
-                        //Delete button
+                        //Delete child event button
                         Button {
                             Task {
                                 await model.deleteChildEvent(child: child, childEvent: child.events[index])

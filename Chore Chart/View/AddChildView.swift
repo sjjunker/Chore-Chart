@@ -9,8 +9,8 @@ import Foundation
 
 struct AddChildView: View {
     @EnvironmentObject var model: ChoreChartModel
-    @State var childName = ""
-    @State var childPoints = ""
+    @State private var childName = ""
+    @State private var childPoints = ""
     
     var body: some View {
         

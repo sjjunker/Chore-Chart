@@ -18,40 +18,19 @@ struct EventView: View {
                 .padding(.top)
                 .italic()
             
-            //Child list
-            //TODO: split rewards from events in two different scrollviews within a tabview
-            //TODO: create new view from this scrollview, and bring in an eventype parameter to change the view based on if it is a chore or reward
-            ScrollView {
-                ForEach(model.events.indices, id: \.self) {index in
-                    
-                    HStack {
-
-                        //TODO: add editing capabilities
-                        
-                        Text(model.events[index].eventName ?? "")
-                        Text(model.events[index].eventType ?? "")
-                        Text(String(model.events[index].eventPoints!))
-                        Spacer()
-                        
-                        //Delete child
-                        Button {
-                            Task {
-                                await model.deleteEvent(event: model.events[index])
-                            }
-                        } label: {
-                            Image(systemName: "x.circle")
-                                .foregroundStyle(Color.red)
-                                .bold()
-                        }
-                        .padding()
-                    }
-                    .background(model.setColor(index: index))
-                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
-                    .foregroundStyle(Color.black)
-                    .padding(.horizontal, 10)
-                }
-            }
-            .padding()
+            //Chores list
+            Text("Chores")
+                .font(.title2)
+                .padding()
+            EventScrollView(eventType: "chore")
+            
+            Divider()
+            
+            //Rewards List
+            Text("Rewards")
+                .font(.title2)
+                .padding()
+            EventScrollView(eventType: "reward")
             
             AddEventView()
         }

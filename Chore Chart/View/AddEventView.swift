@@ -9,9 +9,9 @@ import Foundation
 
 struct AddEventView: View {
     @EnvironmentObject var model: ChoreChartModel
-    @State var eventName = ""
-    @State var eventPoints = ""
-    @State var eventType = "chore"
+    @State private var eventName = ""
+    @State private var eventPoints = ""
+    @State private var eventType = "chore"
     
     var body: some View {
 

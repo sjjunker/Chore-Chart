@@ -20,7 +20,13 @@ struct TitleNavigationView: View {
                     .foregroundStyle(Color.black)
                     .background(Color.teal)
                     .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
+                    .buttonStyle(.automatic)
                 
+                Spacer()
+                Image("titleImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
                 Spacer()
                 
                 NavigationLink("View Events", destination: EventView())
@@ -29,6 +35,7 @@ struct TitleNavigationView: View {
                     .foregroundStyle(Color.black)
                     .background(Color.mint)
                     .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
+                    .buttonStyle(.automatic)
                 
                 Spacer()
             }
