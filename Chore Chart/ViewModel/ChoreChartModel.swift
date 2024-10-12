@@ -6,12 +6,15 @@
 //
 import Foundation
 import FirebaseFirestore
+import SwiftUI
 
 @MainActor
 class ChoreChartModel: ObservableObject {
     @Published var children: [Child] = []
     @Published var events: [Event] = []
+    @Published var popoverShowing = false
     let db = Firestore.firestore()
+    private var blockColors: [Color] = [Color.mint, Color.teal]
     
     init () {
         Task{
@@ -165,6 +168,15 @@ class ChoreChartModel: ObservableObject {
             }
         } catch {
             print("Error getting documents: \(error)")
+        }
+    }
+    
+    //MARK: Other
+    func setColor(index: Int) -> Color {
+        if (index % 2 == 0) {
+            return blockColors[0]
+        } else {
+            return blockColors[1]
         }
     }
 }
