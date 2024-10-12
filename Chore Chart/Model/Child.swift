@@ -26,7 +26,12 @@ class Child: Codable, Identifiable {
         var points = 0
         
         for event in events {
-            points += event.eventPoints!
+            if (event.eventType == "chore") {
+                points += event.eventPoints!
+            } else {
+                points -= event.eventPoints!
+            }
+            
         }
         
         child.points = points

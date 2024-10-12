@@ -43,14 +43,14 @@ class ChoreChartModel: ObservableObject {
     func addChildEvent(child: Child, event: Event) async {
         
         //Create a childEvent from the event
-        let childEvent = ChildEvent(id: UUID(), eventType: event.eventType, eventName: event.eventName, eventPoints: event.eventPoints, eventDate: Date.now)
+        let childEvent = ChildEvent(eventType: event.eventType, eventName: event.eventName, eventPoints: event.eventPoints, eventDate: Date.now)
         
         
         //apppend child event to child's events array
         child.events.append(childEvent)
         
         //Rerender children
-        modifyChild(child: child)
+        await modifyChild(child: child)
         await readChildren()
     }
     
@@ -80,11 +80,12 @@ class ChoreChartModel: ObservableObject {
     }
     
     //MARK: Modify data in the database
-    func modifyChild (child: Child) {
+    func modifyChild (child: Child) async {
         if let id = child.id {
             let currentChild = db.collection("Child").document(id)
             do {
                 try currentChild.setData(from: child)
+                await readChildren()
             }
             catch {
                 print(error)
@@ -92,11 +93,12 @@ class ChoreChartModel: ObservableObject {
         }
     }
     
-    func modifyEvent (event: Event) {
+    func modifyEvent (event: Event) async {
         if let id = event.id {
             let currentEvent = db.collection("Event").document(id)
             do {
                 try currentEvent.setData(from: event)
+                await readEvents()
             }
             catch {
                 print(error)
@@ -105,7 +107,7 @@ class ChoreChartModel: ObservableObject {
     }
     
     //Delete an event from the child events array
-    func deleteChildEvent(child: Child, childEvent: ChildEvent) {
+    func deleteChildEvent(child: Child, childEvent: ChildEvent) async {
         //Get index of event
         var index = 0
         for event in child.events {
@@ -118,7 +120,7 @@ class ChoreChartModel: ObservableObject {
         
         //Remove the event
         child.events.remove(at: index)
-        modifyChild(child: child)
+        await modifyChild(child: child)
     }
     
     //MARK: Read data from database to arrays

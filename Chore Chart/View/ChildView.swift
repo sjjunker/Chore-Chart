@@ -23,17 +23,46 @@ struct ChildView: View {
             .padding()
             
             Divider()
+            Spacer()
             
             //Show completed events
-            List (child.events, id: \.id.self) {event in
-                HStack {
-                    Text(dateFormatter.string(from: event.eventDate ?? Date.now))
-                    Spacer()
-                    Text(event.eventName ?? "")
-                    Spacer()
-                    Text(String(event.eventPoints ?? 0))
+            ScrollView {
+                ForEach (child.events.indices, id: \.self) {index in
+                    Text((child.events[index].eventDate ?? Date.now).formatted(date: .abbreviated, time: .omitted))
+                    
+                    HStack {
+                        //Delete button
+                        Button {
+                            Task {
+                                await model.deleteChildEvent(child: child, childEvent: child.events[index])
+                                await model.modifyChild(child: child)
+                                child.calculatePoints(events: child.events, child: child)
+                                await model.modifyChild(child: child)
+                            }
+                        } label: {
+                            Image(systemName: "x.circle")
+                        }
+                        .foregroundStyle(Color.red)
+                        
+                        //Name and points
+                        Spacer()
+                        Text(child.events[index].eventName ?? "")
+                        Spacer()
+                        if (child.events[index].eventType == "reward") {
+                            Text("-" + String(child.events[index].eventPoints ?? 0))
+                        } else {
+                            Text(String(child.events[index].eventPoints ?? 0))
+                        }
+                    }
+                    .padding()
+                    .border(Color.black, width: 1)
+                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 3, height: 3)))
                 }
             }
+            .padding()
+            
+            
+            Spacer()
             
             //Add completed events to child
             Menu {
@@ -41,9 +70,9 @@ struct ChildView: View {
                     Button {
                         Task {
                             await model.addChildEvent(child: child, event: event)
-                            model.modifyChild(child: child)
+                            await model.modifyChild(child: child)
                             child.calculatePoints(events: child.events, child: child)
-                            model.modifyChild(child: child)
+                            await model.modifyChild(child: child)
                         }
                     } label: {
                         Text(event.eventName ?? "")

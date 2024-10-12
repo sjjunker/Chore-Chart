@@ -8,14 +8,13 @@ import Foundation
 import FirebaseFirestore
 
 class ChildEvent: Codable, Identifiable {
-    var id: UUID?
+    @DocumentID var id: String?
     var eventType: String?
     var eventName: String?
     var eventPoints: Int?
     var eventDate: Date?
     
     init(id: UUID? = nil, eventType:String?, eventName: String? = nil, eventPoints: Int? = nil, eventDate: Date? = nil) {
-        self.id = id
         self.eventType = eventType
         self.eventName = eventName
         self.eventPoints = eventPoints

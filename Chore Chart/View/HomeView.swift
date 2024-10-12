@@ -39,6 +39,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "delete.left")
                         }
+                        .foregroundStyle(Color.red)
                     }
                     .padding()
                 }
