@@ -4,7 +4,6 @@
 //
 //  Created by Sandi Junker on 10/9/24.
 //
-import Foundation
 import FirebaseFirestore
 
 class ChildEvent: Codable, Identifiable {

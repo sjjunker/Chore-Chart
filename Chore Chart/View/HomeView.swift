@@ -5,7 +5,6 @@
 //  Created by Sandi Junker on 10/6/24.
 //
 import SwiftUI
-import Foundation
 
 struct HomeView: View {
     @EnvironmentObject var model: ChoreChartModel

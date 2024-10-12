@@ -4,7 +4,6 @@
 //
 //  Created by Sandi Junker on 10/6/24.
 //
-import Foundation
 import FirebaseFirestore
 import SwiftUI
 

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct ChildEditView: View {
     @EnvironmentObject var model: ChoreChartModel
