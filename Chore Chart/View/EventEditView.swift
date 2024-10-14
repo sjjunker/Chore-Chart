@@ -27,6 +27,7 @@ struct EventEditView: View {
                 .font(.body)
             
             //Edit type
+            //TODO: Make a picker
             TextField("Type", text: $eventType)
                 .padding()
                 .background(Color.white)

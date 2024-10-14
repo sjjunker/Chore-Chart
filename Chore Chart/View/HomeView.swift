@@ -24,5 +24,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(ChoreChartModel())
+       .environmentObject(ChoreChartModel())
 }

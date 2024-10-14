@@ -2,7 +2,7 @@
 
 The Chore Chart project is an iOS application for storing the chores that each child in a household completes. It is based on a point system and allows for the addition of rewards paid for from points earned doing chores. The project has functionality for adding and deleting children, adding and deleting custom chores and rewards, and adding and deleting any completed chores and rewards to a list attached to each child. There is also functionality for editing each child and each chore or reward. The project integrates with Google Firestore by saving each instance of an event, child, and completed event to the database. Adding, deleting, and modifying the database happens within the app. My purpose for writing this software was to become familiar with cloud database integration with iOS software development. I also wanted to create an application that I thought my own household could use.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Chore Chart Demo Video](https://youtu.be/oMUB2KnIjTg)
 
 # Cloud Database
 
